@@ -1,8 +1,10 @@
 #include "../include/menu.h"
+#include "../include/colors.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <ncurses.h>
+#include <time.h>
 
 
 void show_main_menu(){
@@ -44,4 +46,97 @@ void show_main_menu(){
     attroff(COLOR_PAIR(2));
 
     refresh();
+}
+
+void show_settings_menu(int* in_settings, int* num_enemies, int* map_visibility, int* jump_status){
+          WINDOW *wnd = initscr();
+          int ncols, nrows;
+          clear();
+          getmaxyx(wnd, nrows, ncols);
+
+            srand48(time(NULL));
+            start_color();
+
+            cbreak();
+            noecho();
+            nonl();
+            intrflush(stdscr, false);
+            keypad(stdscr, true);
+
+            init_pair(WHITE,COLOR_WHITE,COLOR_BLACK);
+            init_pair(1, COLOR_CYAN, COLOR_BLACK);
+	        init_pair(2, COLOR_YELLOW, COLOR_BLACK);
+
+            int startx = ncols /20;
+            int starty = nrows/20;
+
+            attron(COLOR_PAIR(WHITE)); 
+            mvprintw(starty, (ncols - 7) / 2, "CHOOSE DIFFICULTY");
+            if ((*num_enemies) == 5){
+             mvprintw(starty + 2, startx, "1.[x] EASY: 5 enemies");
+             mvprintw(starty + 3, startx, "2.[ ] MEDIUM: 15 enemies");
+             mvprintw(starty + 4, startx, "3.[ ] HARD: 20 enemies");
+             mvprintw(starty + 5, startx, "4.[ ] IMPOSSIBLE: 30 enemies");
+             clrtoeol();
+            }
+            else if ((*num_enemies) == 15){
+             mvprintw(starty + 2, startx, "1.[ ] EASY: 5 enemies");
+             mvprintw(starty + 3, startx, "2.[x] MEDIUM: 15 enemies");
+             mvprintw(starty + 4, startx, "3.[ ] HARD: 20 enemies");
+             mvprintw(starty + 5, startx, "4.[ ] IMPOSSIBLE: 30 enemies");
+             clrtoeol();
+            }
+            else if ((*num_enemies) == 20){
+             mvprintw(starty + 2, startx, "1.[ ] EASY: 5 enemies");
+             mvprintw(starty + 3, startx, "2.[ ] MEDIUM: 15 enemies");
+             mvprintw(starty + 4, startx, "3.[x] HARD: 20 enemies");
+             mvprintw(starty + 5, startx, "4.[ ] IMPOSSIBLE: 30 enemies");
+             clrtoeol();
+            }
+            else if ((*num_enemies) == 30){
+             mvprintw(starty + 2, startx, "1.[ ] EASY: 5 enemies");
+             mvprintw(starty + 3, startx, "2.[ ] MEDIUM: 15 enemies");
+             mvprintw(starty + 4, startx, "3.[ ] HARD: 20 enemies");
+             mvprintw(starty + 5, startx, "4.[x] IMPOSSIBLE: 30 enemies");
+             clrtoeol();
+            }
+            if((*jump_status)){
+             mvprintw(starty + 7, startx, "5.Activate Jump: ON");
+             clrtoeol();
+            }else {
+              mvprintw(starty + 7, startx, "5.Activate Jump: OFF");
+              clrtoeol();
+            }
+            if((*map_visibility)){
+             mvprintw(starty + 8, startx, "6.Map visibility: ON");
+             clrtoeol();
+            }else {
+              mvprintw(starty + 8, startx, "6.Map visibility: OFF");
+              clrtoeol();
+            }
+            mvprintw(nrows-2,1,"PRESS 'q' TO RETURN");
+            attroff(COLOR_PAIR(WHITE));
+
+            int key = getch();
+            switch(key){
+             case 'q': *in_settings = 0;break;
+             case '1': *num_enemies = 5;refresh();break;
+             case '2': *num_enemies = 15;refresh();break;
+             case '3': *num_enemies = 20;refresh();break;
+             case '4': *num_enemies = 30;refresh();break;
+             case '5': {
+              if((*jump_status)){
+                *jump_status = 0;refresh();break;
+              }else {
+                *jump_status = 1;refresh();break;
+              }
+             }
+             case '6': {
+              if((*map_visibility)){
+                *map_visibility = 0;refresh();break;
+              }else {
+                *map_visibility = 1;refresh();break;
+              }
+             }
+            }
 }

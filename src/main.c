@@ -18,16 +18,27 @@ int main(int argc, char** argv){
 
         start_color();
         init_pair(WHITE, COLOR_WHITE, COLOR_BLACK);
+        int map_visibility = 0;
+        int jump_status = 0;
+        int in_settings = 0;
+        int num_enemies = 5;
         while(1){
             show_main_menu();
 
             int input = getch();
             clear();
-
-            if(input == '5'){
-                endwin();
-                printf("GAME CLOSED\n");
-                exit(0);
+            switch (input){
+                case '4':
+                        in_settings = 1;
+                        while(in_settings){
+                            show_settings_menu(&in_settings,&num_enemies,&map_visibility,&jump_status);
+                        }
+                        break;
+                case '5':
+                        endwin();
+                        printf("GAME CLOSED\n");
+                        exit(0);
+                        break;
             }
         }
 
