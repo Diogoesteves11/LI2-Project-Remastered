@@ -16,18 +16,28 @@ int main(int argc, char** argv){
         curs_set(0);
         noecho();
 
-        start_color();
-        init_pair(WHITE, COLOR_WHITE, COLOR_BLACK);
         int map_visibility = 0;
         int jump_status = 0;
-        int in_settings = 0;
+        int in_settings = 0, in_commands = 0, in_game_dynamics = 0;
         int num_enemies = 5;
         while(1){
+            clear();
             show_main_menu();
 
             int input = getch();
-            clear();
             switch (input){
+                case '2': 
+                        in_game_dynamics = 1;
+                        while(in_game_dynamics){
+                            show_game_dynamics_menu(&in_game_dynamics);
+                        }
+                        break;
+                case '3':
+                        in_commands = 1;
+                        while(in_commands){
+                            show_commands_menu(&in_commands);
+                        }
+                        break;
                 case '4':
                         in_settings = 1;
                         while(in_settings){
@@ -43,7 +53,7 @@ int main(int argc, char** argv){
         }
 
     } else {
-        printf("Developer flags current unavalable");
+        printf("Developer flags current unavalable\n");
     }
 
     return 0;

@@ -64,8 +64,6 @@ void show_settings_menu(int* in_settings, int* num_enemies, int* map_visibility,
             keypad(stdscr, true);
 
             init_pair(WHITE,COLOR_WHITE,COLOR_BLACK);
-            init_pair(1, COLOR_CYAN, COLOR_BLACK);
-	        init_pair(2, COLOR_YELLOW, COLOR_BLACK);
 
             int startx = ncols /20;
             int starty = nrows/20;
@@ -139,4 +137,103 @@ void show_settings_menu(int* in_settings, int* num_enemies, int* map_visibility,
               }
              }
             }
+}
+
+void show_commands_menu(int* in_commands){
+          WINDOW *wnd = initscr();
+          int ncols, nrows;
+          clear();
+          getmaxyx(wnd, nrows, ncols);
+
+            srand48(time(NULL));
+            start_color();
+
+            cbreak();
+            noecho();
+            nonl();
+            intrflush(stdscr, false);
+            keypad(stdscr, true);
+
+            init_pair(WHITE,COLOR_WHITE,COLOR_BLACK);
+
+            int startx = ncols /20;
+            int starty = nrows/20;
+
+            attron(COLOR_PAIR(WHITE)); 
+            mvprintw(starty, (ncols - 7) / 2, "CONTROL");
+
+            mvprintw(starty + 2, startx, "t       -> switch gun");
+            mvprintw(starty + 3, startx, "w/8     -> move UP");
+            mvprintw(starty + 4, startx, "s/2     -> move DOWN");
+            mvprintw(starty + 5, startx, "a/4     -> move LEFT");
+            mvprintw(starty + 6, startx, "d/6     -> move RIGHT");
+            mvprintw(starty + 7, startx, "7       -> move UPPER LEFT");
+            mvprintw(starty + 8, startx, "9       -> move UPPER RIGHT");
+            mvprintw(starty + 9, startx, "1       -> move DOWN LEFT");
+            mvprintw(starty + 10, startx, "3       -> move DOWN RIGHT");
+            mvprintw(starty + 11, startx, "SPACE   -> USE WEAPON");
+            mvprintw(starty + 12, startx, "5       -> NO MOVEMENT");
+            mvprintw(starty + 13, startx, "SHIFT   -> JUMP");
+
+
+            mvprintw(nrows-2,1,"PRESS 'q' TO RETURN");
+            attroff(COLOR_PAIR(WHITE));
+
+            int key = getch();
+            switch(key){
+             case 'q': *in_commands = 0;refresh();break;
+            }
+}
+
+void show_game_dynamics_menu(int* in_game_dynamics){
+          WINDOW *wnd = initscr();
+          int ncols, nrows;
+          clear();
+          getmaxyx(wnd, nrows, ncols);
+
+            srand48(time(NULL));
+            start_color();
+
+            cbreak();
+            noecho();
+            nonl();
+            intrflush(stdscr, false);
+            keypad(stdscr, true);
+            init_pair(WHITE,COLOR_WHITE,COLOR_BLACK);
+
+            int starty = nrows/20;
+
+            attron(COLOR_PAIR(WHITE));
+            mvprintw(starty,(ncols / 2)-9,"GAME DYNAMICS");
+            mvprintw(starty+2,1,"MOVIMENT: ");
+            mvprintw(starty+3,2,"1. The player only moves 1 block at a time, in any direction");
+            mvprintw(starty+4,2,"2. By pressing the number 5, the player does not move and the game refreshes");
+            mvprintw(starty+5,2,"3. The player can only move towards an empty block, or a item such as bullets, traps or heals");
+            mvprintw(starty+6,2,"4. The enemies move randomly when they're out of the 10 block radius. Once they're incide the radius, they move towards the player");
+            mvprintw(starty+7,2,"5. The player has a 'JUMP' function that can be enabled in settings. This allows the player to move 2 blocks at a time if the next block is valid");
+
+            mvprintw(starty+9,1,"LIGHTING SYSTEM: ");
+            mvprintw(starty+10,2,"1.The player has a flashlight that iluminates the map in any direction. The light is dynamic, witch means that it adapts to the map.");
+
+            mvprintw(starty+13,1,"COMBAT: ");
+            mvprintw(starty+14,2,"1. Each hit given by the monster to the player reduces the player's hp by 1");
+            mvprintw(starty+15,2,"2. Each player starts with 4 hp and 0 bullets.");
+            mvprintw(starty+16,2,"3. The hp and bullets are rechargeable, by picking up the loot present on the map");
+            mvprintw(starty+17,2,"4. Each hit given by the sword reduces 1hp to the enemy");
+            mvprintw(starty+18,2,"5. Each hit given by the gun kills the monster");
+            mvprintw(starty+19,2,"6. If the player steps on a trap, the player's hp is divided by 2 until the player is 1hp");
+            mvprintw(starty+20,2,"7. The sowrd has a 1 block range while the gun has a unlimited range, enless the bullet hits a wall");
+            mvprintw(starty+21,2,"8. The number of enemies is variable, however, when a enemy is killed, another one spawns");
+            mvprintw(starty+22,2,"9. The enemies have a 1 block range");
+ 
+           mvprintw(starty+25,1,"NOTES:");
+           mvprintw(starty+26,2,"1.The game has a difficulty system that can be change in 'GAME SETTINGS'");
+           mvprintw(starty+27,2,"2.Inside the game settings menu, the user can change game dynamics such has the map visibility, the difficulty and the jump");
+           mvprintw(nrows-2,1,"PRESS 'q' TO RETURN");
+           attroff(COLOR_PAIR(WHITE));
+
+           int key = getch();
+           switch(key){
+            case 'q': *in_game_dynamics = 0;break;
+           }
 }
