@@ -3,4 +3,5 @@
 
 typedef struct map_matrix Map;
 
+Map* start_map(int max_x, int max_y);
 #endif

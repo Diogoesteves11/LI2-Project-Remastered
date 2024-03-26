@@ -7,6 +7,7 @@
 #include "../include/monsters.h"
 #include "../include/menu.h"
 #include "../include/colors.h"
+#include "../include/engine.h"
 
 
 int main(int argc, char** argv){
@@ -18,7 +19,7 @@ int main(int argc, char** argv){
 
         int map_visibility = 0;
         int jump_status = 0;
-        int in_settings = 0, in_commands = 0, in_game_dynamics = 0;
+        int in_settings = 0, in_commands = 0, in_game_dynamics = 0, in_game = 0;
         int num_enemies = 5;
         while(1){
             clear();
@@ -26,6 +27,9 @@ int main(int argc, char** argv){
 
             int input = getch();
             switch (input){
+                case '1':
+                        in_game = 1;
+
                 case '2': 
                         in_game_dynamics = 1;
                         while(in_game_dynamics){

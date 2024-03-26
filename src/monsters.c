@@ -1,4 +1,6 @@
 #include "../include/monsters.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 struct monster{
     int MonsterX;
@@ -32,4 +34,8 @@ int getMonsterY(Monster *m){
 
 double getMonsterHp(Monster *m){
     return m->hp;
+}
+
+Monster* create_monsters(int num){
+   return malloc(sizeof(Monster) * num);
 }

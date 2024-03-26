@@ -7,6 +7,7 @@ struct player{
 	int bullets;
 	int sword;
 	int kills;
+    int last_direction;
 };
 
 //setters
@@ -34,6 +35,10 @@ void setPlayerKills(Player *p, int kills){
     p->kills = kills;
 }
 
+void setPlayerDirection(Player* p, int direction){
+    p->last_direction = direction;
+}
+
 //getters
 
 int getPlayerX(Player *p){
@@ -57,4 +62,20 @@ int getPlayerSword(Player *p){
 
 int getPlayerKills(Player *p){
     return p->kills;
+}
+
+int getPlayerDirection(Player* p){
+    return p->last_direction;
+}
+
+Player* start_player(){
+    Player* new_player = malloc(sizeof(Player));
+    setPlayerX(new_player,20);
+    setPlayerY(new_player, 20);
+    setPlayerHp(new_player,3);
+    setPlayerKills(new_player,0);
+    setPlayerSword(new_player,1);
+    setPlayerBullets(new_player,5);
+    setPlayerDirection(new_player, NO_DIRECTION);
+    return new_player;
 }
