@@ -9,7 +9,7 @@
 #include <stdio.h>
 
 
-void run_game(int* in_game, int* num_enemies){
+void run_game(int* in_game, int num_enemies, int map_visibility){
     WINDOW *wnd = initscr();
     int ncols, nrows;
     clear();
@@ -24,9 +24,17 @@ void run_game(int* in_game, int* num_enemies){
     keypad(stdscr, true);
     init_pair(WHITE,COLOR_WHITE,COLOR_BLACK);
 
-    Monster* monster_array = create_monsters(*num_enemies); //  FREE ATE THE END
+    Monster** monster_array = create_monsters(num_enemies); //  FREE ATE THE END
     Player* player = start_player(); //FREE AT THE END
 
     clear();
     Map* map = start_map(nrows,ncols);
+    while(*in_game){
+        if(*in_game == 0) break;
+        draw_map(map, map_visibility, nrows, ncols);
+        char input = getch();
+        if(input == 'q') *in_game == 0;
+    }
+    deletePlayer(player);
+    deleteMonsters(monster_array, num_enemies);
 }

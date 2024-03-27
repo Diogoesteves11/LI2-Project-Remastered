@@ -13,6 +13,7 @@ int getMonsterX(Monster *m);
 int getMonsterY(Monster *m);
 double getMonsterHp(Monster *m);
 
-Monster* create_monsters(int num);
+Monster** create_monsters(int num);
+void deleteMonsters(Monster** m, int n);
 
 #endif

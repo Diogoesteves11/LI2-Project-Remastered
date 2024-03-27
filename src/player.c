@@ -1,5 +1,6 @@
 #include "../include/player.h"
-
+#include <stdio.h>
+#include <stdlib.h>
 struct player{
     int playerX;
 	int playerY;
@@ -78,4 +79,8 @@ Player* start_player(){
     setPlayerBullets(new_player,5);
     setPlayerDirection(new_player, NO_DIRECTION);
     return new_player;
+}
+
+void deletePlayer(Player* p){
+    free(p);
 }

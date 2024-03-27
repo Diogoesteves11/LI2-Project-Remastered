@@ -34,5 +34,6 @@ int getPlayerKills(Player *p);
 int getPlayerDirection(Player* p);
 
 Player* start_player();
+void deletePlayer(Player* p);
 
 #endif

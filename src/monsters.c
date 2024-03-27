@@ -36,6 +36,11 @@ double getMonsterHp(Monster *m){
     return m->hp;
 }
 
-Monster* create_monsters(int num){
+Monster** create_monsters(int num){
    return malloc(sizeof(Monster) * num);
 }
+
+void deleteMonsters(Monster** m, int n){
+    for(int i = 0; i < n; i++) free(m[i]);
+}
+
