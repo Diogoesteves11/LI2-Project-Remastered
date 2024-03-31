@@ -15,11 +15,6 @@ Map* start_map(int max_x, int max_y){
     Map* m = malloc(sizeof(Map));
     m->Max_X = max_x;
     m->Max_Y = max_y;
-    for (int ix = 0; ix <= m->Max_X; ix++){
-        for (int iy = 0; iy <= m->Max_Y; iy++){
-         m->matrix[ix][iy] = '\0';
-        }
-    }
     return m;
 }
 
