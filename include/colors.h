@@ -9,4 +9,6 @@
 #define GREEN 5
 #define YELLOW 6
 
+#define WALL_COLOR 7
+
 #endif

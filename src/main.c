@@ -29,7 +29,9 @@ int main(int argc, char** argv){
             switch (input){
                 case '1':
                         in_game = 1;
-                        run_game(&in_game, num_enemies, map_visibility);
+                        while(in_game) run_game(&in_game, num_enemies, map_visibility);
+                        break;
+                        
                 case '2': 
                         in_game_dynamics = 1;
                         while(in_game_dynamics){
