@@ -29,8 +29,10 @@ void run_game(int* in_game, int num_enemies, int map_visibility){
 
     clear();
     Map* map = start_map(nrows,ncols);
-    draw_map(map, map_visibility, nrows , ncols);
+    generate_map(map, map_visibility, nrows , ncols);
+    spawn_player(player,map);
     while((*in_game)){
+        draw_player(player,map);
         if((*in_game) == 0) break;
         char input = getch();
         if(input == 'q') (*in_game) = 0;

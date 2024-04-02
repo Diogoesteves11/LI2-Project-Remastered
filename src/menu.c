@@ -8,10 +8,6 @@
 
 
 void show_main_menu(){
-    start_color();
-	init_pair(1, COLOR_CYAN, COLOR_BLACK);
-	init_pair(2, COLOR_YELLOW, COLOR_BLACK);
-
     clear();
     
     int rows, cols;
@@ -23,27 +19,27 @@ void show_main_menu(){
     int start_y = (rows - menu_height) / 2;
     
 
-    attron(COLOR_PAIR(1));
+    attron(COLOR_PAIR(CYAN));
     mvprintw(start_y, start_x, "====================");
     mvprintw(start_y + 1, start_x, "     START MENU");
     mvprintw(start_y + 2, start_x, "====================");
-    attroff(COLOR_PAIR(1));
+    attroff(COLOR_PAIR(CYAN));
 
-    attron(COLOR_PAIR(2));
+    attron(COLOR_PAIR(WHITE));
     mvprintw(start_y + 3, start_x, " 1. PLAY GAME");
     mvprintw(start_y + 4, start_x, " 2. GAME DYNAMICS");
     mvprintw(start_y + 5, start_x, " 3. COMMAND LIST");
     mvprintw(start_y + 6, start_x, " 4. SETTINGS");
     mvprintw(start_y + 7, start_x, " 5. EXIT");
-    attroff(COLOR_PAIR(2));
+    attroff(COLOR_PAIR(WHITE));
 
-    attron(COLOR_PAIR(1));
+    attron(COLOR_PAIR(CYAN));
     mvprintw(start_y + 8, start_x, "====================");
-    attroff(COLOR_PAIR(1));
+    attroff(COLOR_PAIR(CYAN));
 
-    attron(COLOR_PAIR(2));
+    attron(COLOR_PAIR(WHITE));
     mvprintw(start_y + 9, start_x, "  CHOOSE AN OPTION ");
-    attroff(COLOR_PAIR(2));
+    attroff(COLOR_PAIR(WHITE));
 
     refresh();
 }
@@ -55,15 +51,12 @@ void show_settings_menu(int* in_settings, int* num_enemies, int* map_visibility,
           getmaxyx(wnd, nrows, ncols);
 
             srand48(time(NULL));
-            start_color();
 
             cbreak();
             noecho();
             nonl();
             intrflush(stdscr, false);
             keypad(stdscr, true);
-
-            init_pair(WHITE,COLOR_WHITE,COLOR_BLACK);
 
             int startx = ncols /20;
             int starty = nrows/20;
@@ -146,15 +139,12 @@ void show_commands_menu(int* in_commands){
           getmaxyx(wnd, nrows, ncols);
 
             srand48(time(NULL));
-            start_color();
 
             cbreak();
             noecho();
             nonl();
             intrflush(stdscr, false);
             keypad(stdscr, true);
-
-            init_pair(WHITE,COLOR_WHITE,COLOR_BLACK);
 
             int startx = ncols /20;
             int starty = nrows/20;
@@ -192,14 +182,12 @@ void show_game_dynamics_menu(int* in_game_dynamics){
           getmaxyx(wnd, nrows, ncols);
 
             srand48(time(NULL));
-            start_color();
 
             cbreak();
             noecho();
             nonl();
             intrflush(stdscr, false);
             keypad(stdscr, true);
-            init_pair(WHITE,COLOR_WHITE,COLOR_BLACK);
 
             int starty = nrows/20;
 

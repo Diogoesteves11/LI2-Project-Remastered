@@ -16,11 +16,13 @@ int main(int argc, char** argv){
         keypad(stdscr, TRUE);
         curs_set(0);
         noecho();
+        init_colors();
 
         int map_visibility = 0;
         int jump_status = 0;
         int in_settings = 0, in_commands = 0, in_game_dynamics = 0, in_game = 0;
         int num_enemies = 5;
+
         while(1){
             clear();
             show_main_menu();

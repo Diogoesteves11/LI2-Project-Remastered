@@ -1,6 +1,8 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
+#include "../include/mapa.h"
+
 typedef struct player Player;
 
 #define N 19 
@@ -34,6 +36,8 @@ int getPlayerKills(Player *p);
 int getPlayerDirection(Player* p);
 
 Player* start_player();
+void spawn_player(Player *p, Map* map);
+void draw_player(Player* p, Map* m);
 void deletePlayer(Player* p);
 
 #endif

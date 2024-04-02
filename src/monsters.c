@@ -10,6 +10,8 @@ struct monster{
 
 //setters
 
+
+
 void setMonsterX(Monster *m, int x){
     m->MonsterX = x;
 }

@@ -12,6 +12,22 @@ struct map_matrix{
     int Max_Y;
     char** matrix;
 };
+//getters
+int get_map_Max_X(Map* m){
+    return m->Max_X;
+}
+int get_map_Max_Y(Map* m){
+    return m->Max_Y;
+}
+
+char get_map_char(Map* m, int r, int c){
+    return m->matrix[r][c];
+}
+
+//functions
+void insert_on_map(Map* m, char input, int r, int l){
+    m->matrix[r][l] = input;
+}
 
 Map* start_map(int max_x, int max_y){
     Map* m = malloc(sizeof(Map));
@@ -24,7 +40,7 @@ Map* start_map(int max_x, int max_y){
     return m;
 }
 
-void draw_borders(Map* map, int* count1){
+void generate_borders(Map* map, int* count1){
     for (int i = 0; i < map->Max_X-1; i++) { // border
         map->matrix[i][0] = '#';
         map->matrix[i][map->Max_Y - 2] = '#';
@@ -41,10 +57,9 @@ void draw_borders(Map* map, int* count1){
     }
 }
 
-void draw_map(Map* map,int map_visibility, int max_x, int max_y){
+void generate_map(Map* map,int map_visibility, int max_x, int max_y){
     srand(time(NULL));
-    start_color();
-    init_pair(BLACK, COLOR_BLACK, COLOR_BLACK);
+
     if(map_visibility){
          init_pair(WALL_COLOR, COLOR_CYAN, COLOR_BLUE);
     }else {
@@ -55,7 +70,7 @@ void draw_map(Map* map,int map_visibility, int max_x, int max_y){
     int count1 = 0;
     
     attron(COLOR_PAIR(WALL_COLOR));
-    draw_borders(map,&count1);
+    generate_borders(map,&count1);
 
     int casas_totais = ((map->Max_X-1) * (map->Max_Y-1)) - count1;
     

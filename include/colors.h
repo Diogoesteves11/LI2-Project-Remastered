@@ -8,7 +8,13 @@
 #define RED 4
 #define GREEN 5
 #define YELLOW 6
+#define CYAN 7
 
-#define WALL_COLOR 7
+#define WALL_COLOR 8
+#define PLAYER 9
+#define MEDIUM_HP 10
+#define LOW_HP 11
+
+void init_colors();
 
 #endif
