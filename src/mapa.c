@@ -166,3 +166,16 @@ void generate_map(Map* map,int map_visibility, int max_x, int max_y){
 attroff(COLOR_PAIR(WALL_COLOR));
 }
 
+void deleteMap(Map* map){
+    for (int i = 0; i < map->Max_Y; ++i) {
+        free(map->matrix[i]);
+    }
+
+    free(map->matrix);
+
+    map->Max_X = 0;
+    map->Max_Y = 0;
+
+    free(map);
+}
+

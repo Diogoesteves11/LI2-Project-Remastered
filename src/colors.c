@@ -12,4 +12,5 @@ void init_colors(){
     init_pair(MEDIUM_HP, COLOR_BLACK, COLOR_YELLOW);
     init_pair(LOW_HP,COLOR_BLACK,COLOR_RED);
 
+    init_pair(SCORE, COLOR_WHITE, COLOR_BLACK);
 }

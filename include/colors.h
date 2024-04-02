@@ -15,6 +15,8 @@
 #define MEDIUM_HP 10
 #define LOW_HP 11
 
+#define SCORE 12
+
 void init_colors();
 
 #endif

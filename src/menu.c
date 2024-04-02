@@ -1,5 +1,8 @@
 #include "../include/menu.h"
 #include "../include/colors.h"
+#include "../include/player.h"
+#include "../include/mapa.h"
+#include "../include/monsters.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -224,4 +227,39 @@ void show_game_dynamics_menu(int* in_game_dynamics){
            switch(key){
             case 'q': *in_game_dynamics = 0;break;
            }
+}
+
+void show_game_submenu(int nrows, int ncols,int num_enemies,int jump_status, int map_visibility, Player* p, Map* m){
+    move(nrows-1, 0);
+    attron(COLOR_PAIR(SCORE));
+    printw("(%d, %d) %d %d", getPlayerX(p), getPlayerY(p), nrows-1, ncols);
+    clrtoeol();
+    printw("    Bullets: %d", getPlayerBullets(p));
+    clrtoeol();
+    printw("   HP: %d", getPlayerHp(p));
+    clrtoeol();
+    printw("   KILLS: %d", getPlayerKills(p));
+    clrtoeol();
+    printw("   EQUIPPED:");
+    if (getPlayerSword(p)) {
+        printw(" SWORD ");
+    } else {
+        printw(" GUN");
+    }
+    clrtoeol();
+    printw("   ENEMIES: %d", num_enemies);
+    clrtoeol();
+    if(jump_status){
+        printw("   JUMP: ON");
+    }else {
+        printw("   JUMP: OFF");
+    }
+    if(map_visibility){
+        printw("   MAP VISIBILITY: ON");
+    }else {
+        printw("   MAP VISIBILITY: OFF");
+    }
+    clrtoeol();
+    mvprintw(nrows-1,ncols-19,"PRESS 'q' TO RETURN");
+    attroff(COLOR_PAIR(SCORE));
 }
