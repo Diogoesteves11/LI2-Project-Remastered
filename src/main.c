@@ -13,7 +13,6 @@
 int main(int argc, char** argv){
     if(argc < 2){
         WINDOW *wnd = initscr();
-        initscr();
         keypad(stdscr, TRUE);
         curs_set(0);
         noecho();
@@ -24,19 +23,19 @@ int main(int argc, char** argv){
         int in_settings = 0, in_commands = 0, in_game_dynamics = 0, in_game = 0;
         int num_enemies = 5;
 
-        int nrows, ncols;
+        int y, x;
 
         while(1){
             clear();
 
-            getmaxyx(wnd, ncols, nrows);
+            getmaxyx(wnd, y, x);
             show_main_menu();
 
             int input = getch();
             switch (input){
                 case '1':
                         in_game = 1;
-                        while(in_game) run_game(&in_game, num_enemies, map_visibility, jump_status, nrows, ncols);
+                        while(in_game) run_game(&in_game, num_enemies, map_visibility, jump_status, y, x);
                         break;
                         
                 case '2': 

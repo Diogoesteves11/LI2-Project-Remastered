@@ -20,8 +20,8 @@ int get_map_Max_Y(Map* m){
     return m->Max_Y;
 }
 
-char get_map_char(Map* m, int r, int c){
-    return m->matrix[r][c];
+char get_map_char(Map* m, int y, int x){
+    return m->matrix[y][x];
 }
 
 //functions
@@ -29,7 +29,7 @@ void insert_on_map(Map* m, char input, int r, int l){
     m->matrix[r][l] = input;
 }
 
-Map* start_map(int max_x, int max_y){
+Map* start_map(int max_y, int max_x){
     Map* m = malloc(sizeof(Map));
     m->Max_X = max_x;
     m->Max_Y = max_y;
