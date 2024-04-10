@@ -10,7 +10,7 @@
 struct map_matrix{
     int Max_X;
     int Max_Y;
-    char** matrix;
+    char** matrix; //matrix YxX
 };
 //getters
 int get_map_Max_X(Map* m){
@@ -33,26 +33,26 @@ Map* start_map(int max_y, int max_x){
     Map* m = malloc(sizeof(Map));
     m->Max_X = max_x;
     m->Max_Y = max_y;
-    m->matrix = (char**)malloc(sizeof(char*) * max_x);
-    for(int i = 0; i < max_x; i++){
-        m->matrix[i] = (char*) malloc(sizeof(char) * max_y);
+    m->matrix = (char**)malloc(sizeof(char*) * max_y);
+    for(int i = 0; i < max_y; i++){
+        m->matrix[i] = (char*) malloc(sizeof(char) * max_x);
     }
     return m;
 }
 
 void generate_borders(Map* map, int* count1){
-    for (int i = 0; i < map->Max_X-1; i++) { // border
+    for (int i = 0; i < map->Max_Y-1; i++) { // border
         map->matrix[i][0] = '#';
-        map->matrix[i][map->Max_Y - 2] = '#';
+        map->matrix[i][map->Max_X - 2] = '#';
         mvaddch(0, i, map->matrix[i][0]);
-        mvaddch(map->Max_Y - 2, i, map->matrix[i][map->Max_Y - 2]);
+        mvaddch(map->Max_X - 2, i, map->matrix[i][map->Max_X - 2]);
         (*count1)++;
     }
-    for (int i = 0; i < map->Max_Y - 1; i++) { // border
+    for (int i = 0; i < map->Max_X - 1; i++) { // border
         map->matrix[0][i] = '#';
-        map->matrix[map->Max_X - 1][i] = '#';
+        map->matrix[map->Max_Y - 1][i] = '#';
         mvaddch(i, 0, map->matrix[0][i]);
-        mvaddch(i, map->Max_X - 1, map->matrix[map->Max_X - 1][i]);
+        mvaddch(i, map->Max_Y - 1, map->matrix[map->Max_Y - 1][i]);
         (count1)++;
     }
 }
@@ -77,8 +77,8 @@ void generate_map(Map* map,int map_visibility, int max_x, int max_y){
     for (int i = 0; i < casas_totais * 0.4; i++) {
         int x1 =  rand() % (map->Max_X - 1);
         int y1 =  rand() % (map->Max_Y - 1);
-        map->matrix[x1][y1] = '#';
-        mvaddch(y1, x1, map->matrix[x1][y1]);
+        map->matrix[y1][x1] = '#';
+        mvaddch(y1, x1, map->matrix[y1][x1]);
     }
 
     for (int i = 0; i < 3; i++) { 
@@ -87,24 +87,24 @@ void generate_map(Map* map,int map_visibility, int max_x, int max_y){
                 int count = 0;
                 for (int yy = y - 1; yy <= y + 1; yy++) {
                     for (int xx = x - 1; xx <= x + 1; xx++) {
-                        if (map->matrix[xx][yy] == '#') {
+                        if (map->matrix[yy][xx] == '#') {
                             count++;
                         }
                     }
                 }
-                if (map->matrix[x][y] == '#') {
+                if (map->matrix[y][x] == '#') {
                     if (count < 3) {
                          attroff(COLOR_PAIR(WALL_COLOR));
                          attron (COLOR_PAIR(BLACK));
-                        map->matrix[x][y] = ' ';
-                        mvaddch(y,x,map->matrix[x][y]);
+                        map->matrix[y][x] = ' ';
+                        mvaddch(y,x,map->matrix[y][x]);
                          attroff(COLOR_PAIR(BLACK));
                          attron (COLOR_PAIR(BLACK));
                     }
                 } else {
                     if (count > 4) {
-                        map->matrix[x][y] = '#';
-                        mvaddch(y,x,map->matrix[x][y]);
+                        map->matrix[y][x] = '#';
+                        mvaddch(y,x,map->matrix[y][x]);
                     }
                 }
             }
@@ -117,25 +117,25 @@ void generate_map(Map* map,int map_visibility, int max_x, int max_y){
                 int count = 0;
                 for (int iy = y - 1; iy <= y + 1; iy++) {
                     for (int ix = x - 1; ix <= x + 1; ix++) {
-                        if (map->matrix[ix][iy] == '#' && (iy != y || ix != x)) {
+                        if (map->matrix[iy][ix] == '#' && (iy != y || ix != x)) {
                             count++;
                         }
                     }
                 }
-                if (map->matrix[x][y] == '#') {
+                if (map->matrix[y][x] == '#') {
                     if (count < 3) {
                          attroff(COLOR_PAIR(WALL_COLOR));
                          attron (COLOR_PAIR(BLACK));
-                        map->matrix[x][y] = ' ';
-                        mvaddch(y,x,map->matrix[x][y]);
+                        map->matrix[y][x] = ' ';
+                        mvaddch(y,x,map->matrix[y][x]);
                          attroff(COLOR_PAIR(BLACK));
                          attron (COLOR_PAIR(BLACK));
                     }
                 }
-                if (map->matrix[x][y]== ' ') {
+                if (map->matrix[y][x]== ' ') {
                     if (count > 4) {
-                        map->matrix[x][y] = '#';
-                        mvaddch(y,x,map->matrix[x][y]);
+                        map->matrix[y][x] = '#';
+                        mvaddch(y,x,map->matrix[y][x]);
                     }
                 }
             }
@@ -143,14 +143,14 @@ void generate_map(Map* map,int map_visibility, int max_x, int max_y){
     }
 
 
- for (int i = 1; i < map->Max_X - 1; i++) {
-    for (int j = 1; j < map->Max_Y - 1; j++) {
+ for (int i = 1; i < map->Max_Y - 1; i++) {
+    for (int j = 1; j < map->Max_X - 1; j++) {
         if (map->matrix[i][j] == '#') {
             int count2 = 0;
-            if (map->matrix[i - 1][j] == '#') count2++; 
-            if (map->matrix[i + 1][j] == '#') count2++; 
-            if (map->matrix[i][j - 1] == '#') count2++; 
-            if (map->matrix[i][j + 1] == '#') count2++; 
+            if (map->matrix[i - 1][j] == '#') count2++;
+            if (map->matrix[i + 1][j] == '#') count2++;
+            if (map->matrix[i][j - 1] == '#') count2++;
+            if (map->matrix[i][j + 1] == '#') count2++;
 
             if (count2 == 0) {
                 attroff(COLOR_PAIR(WALL_COLOR));
