@@ -82,7 +82,7 @@ void generate_map(Map* map,int map_visibility, int max_x, int max_y){
     }
 
     for (int i = 0; i < 3; i++) { 
-        for (int y = 1; y < (map->Max_Y-1) - 1; y++) {
+        for (int y = 1; y < (map->Max_Y-2); y++) {
             for (int x = 1; x < (map->Max_X-1) - 1; x++) {
                 int count = 0;
                 for (int yy = y - 1; yy <= y + 1; yy++) {
@@ -96,8 +96,8 @@ void generate_map(Map* map,int map_visibility, int max_x, int max_y){
                     if (count < 3) {
                          attroff(COLOR_PAIR(WALL_COLOR));
                          attron (COLOR_PAIR(BLACK));
-                        map->matrix[y][x] = ' ';
-                        mvaddch(y,x,map->matrix[y][x]);
+                         map->matrix[y][x] = ' ';
+                         mvaddch(y,x,map->matrix[y][x]);
                          attroff(COLOR_PAIR(BLACK));
                          attron (COLOR_PAIR(BLACK));
                     }
@@ -126,8 +126,8 @@ void generate_map(Map* map,int map_visibility, int max_x, int max_y){
                     if (count < 3) {
                          attroff(COLOR_PAIR(WALL_COLOR));
                          attron (COLOR_PAIR(BLACK));
-                        map->matrix[y][x] = ' ';
-                        mvaddch(y,x,map->matrix[y][x]);
+                         map->matrix[y][x] = ' ';
+                         mvaddch(y,x,map->matrix[y][x]);
                          attroff(COLOR_PAIR(BLACK));
                          attron (COLOR_PAIR(BLACK));
                     }
@@ -156,7 +156,7 @@ void generate_map(Map* map,int map_visibility, int max_x, int max_y){
                 attroff(COLOR_PAIR(WALL_COLOR));
                 attron (COLOR_PAIR(BLACK));
                 map->matrix[i][j] = ' '; 
-                mvaddch(j, i, map->matrix[i][j]);
+                mvaddch(i, j, map->matrix[i][j]);
                 attroff(COLOR_PAIR(BLACK));
                 attron(COLOR_PAIR(WALL_COLOR));
             }

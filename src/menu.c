@@ -230,35 +230,36 @@ void show_game_dynamics_menu(int* in_game_dynamics){
 }
 
 void show_game_submenu(int nrows, int ncols,int num_enemies,int jump_status, int map_visibility, Player* p, Map* m){
+    move(nrows - 1, 0);
     attron(COLOR_PAIR(SCORE));
-    mvprintw(ncols-1,nrows-1,"(%d, %d) %d %d", getPlayerX(p), getPlayerY(p), nrows-1, ncols);
+    printw("(%d, %d) %d %d", getPlayerX(p), getPlayerY(p), ncols, nrows);
     clrtoeol();
-    mvprintw(ncols-1,nrows-1,"  Bullets: %d", getPlayerBullets(p));
+    printw("    Bullets: %d", getPlayerBullets(p));
     clrtoeol();
-    mvprintw(ncols-1,nrows-1,"   HP: %d", getPlayerHp(p));
+    printw("   HP: %d", getPlayerHp(p));
     clrtoeol();
-    mvprintw(ncols-1,nrows-1,"   KILLS: %d", getPlayerKills(p));
+    printw("   KILLS: %d", getPlayerKills(p));
     clrtoeol();
-    mvprintw(ncols-1,nrows-1,"   EQUIPPED:");
+    printw("   EQUIPPED:");
     if (getPlayerSword(p)) {
-        mvprintw(ncols-1,nrows-1," SWORD ");
+        printw(" SWORD ");
     } else {
-        mvprintw(ncols-1,nrows-1," GUN");
+        printw(" GUN");
     }
     clrtoeol();
-    mvprintw(ncols-1,nrows-1,"   ENEMIES: %d", num_enemies);
+    printw("   ENEMIES: %d", num_enemies);
     clrtoeol();
     if(jump_status){
-        mvprintw(ncols-1,nrows-1,"   JUMP: ON");
+        printw("   JUMP: ON");
     }else {
-        mvprintw(ncols-1,nrows-1,"   JUMP: OFF");
+        printw("   JUMP: OFF");
     }
     if(map_visibility){
-        mvprintw(ncols-1,nrows-1,"   MAP VISIBILITY: ON");
+        printw("   MAP VISIBILITY: ON");
     }else {
-        mvprintw(ncols-1,nrows-1,"   MAP VISIBILITY: OFF");
+        printw("   MAP VISIBILITY: OFF");
     }
     clrtoeol();
-    mvprintw(ncols-1,nrows-1,"PRESS 'q' TO RETURN");
+    mvprintw(nrows-1,ncols-19,"PRESS 'q' TO RETURN");
     attroff(COLOR_PAIR(SCORE));
 }
