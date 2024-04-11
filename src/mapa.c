@@ -41,18 +41,18 @@ Map* start_map(int max_y, int max_x){
 }
 
 void generate_borders(Map* map, int* count1){
-    for (int i = 0; i < map->Max_Y-1; i++) { // border
+    for (int i = 0; i < map->Max_Y - 1; i++) { // vertical borders
         map->matrix[i][0] = '#';
-        map->matrix[i][map->Max_X - 2] = '#';
-        mvaddch(0, i, map->matrix[i][0]);
-        mvaddch(map->Max_X - 2, i, map->matrix[i][map->Max_X - 2]);
+        map->matrix[i][map->Max_X - 1] = '#';
+        mvaddch(i, 0, map->matrix[i][0]);
+        mvaddch(i, map->Max_X - 1, map->matrix[i][map->Max_X - 1]);
         (*count1)++;
     }
-    for (int i = 0; i < map->Max_X - 1; i++) { // border
+    for (int i = 0; i < map->Max_X - 1; i++) { // horizontal borders
         map->matrix[0][i] = '#';
-        map->matrix[map->Max_Y - 1][i] = '#';
-        mvaddch(i, 0, map->matrix[0][i]);
-        mvaddch(i, map->Max_Y - 1, map->matrix[map->Max_Y - 1][i]);
+        map->matrix[map->Max_Y - 2][i] = '#';
+        mvaddch(0, i, map->matrix[0][i]);
+        mvaddch(map->Max_Y - 2, i, map->matrix[map->Max_Y - 2][i]);
         (count1)++;
     }
 }
