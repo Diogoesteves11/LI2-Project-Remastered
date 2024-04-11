@@ -90,9 +90,11 @@ void spawn_player(Player *p, Map* map) {
         x = (rand() % (get_map_Max_X(map) - 2));
         y = (rand() % (get_map_Max_Y(map) - 2));
     } while (get_map_char(map,y,x) != ' ' &&
+            get_map_char(map,y,x-1) == '#' &&
             get_map_char(map,y,x+1) == '#' &&
             get_map_char(map,y-1,x) == '#' &&
-            get_map_char(map,y+1,x) == '#');
+            get_map_char(map,y+1,x) == '#' &&
+            get_map_char(map,y+1,x+1) == '#');
 
     p->playerX = y;
     p->playerY = x;
