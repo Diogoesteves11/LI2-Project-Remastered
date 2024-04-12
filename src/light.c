@@ -33,7 +33,7 @@ void draw_light(Map* m, Player* p){
             char testch = get_map_char(m,(int)y,(int)x);
             if (testch == wall) {
                 attron(COLOR_PAIR(WHITE));
-                mvaddch(x, y, testch);
+                mvaddch(y, x, testch);
                 attroff(COLOR_PAIR(WHITE));
                 break;
             }
