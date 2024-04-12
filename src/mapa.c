@@ -25,8 +25,8 @@ char get_map_char(Map* m, int y, int x){
 }
 
 //functions
-void insert_on_map(Map* m, char input, int r, int l){
-    m->matrix[r][l] = input;
+void insert_on_map(Map* m, char input, int y, int x){
+    m->matrix[y][x] = input;
 }
 
 Map* start_map(int max_y, int max_x){

@@ -96,23 +96,23 @@ void spawn_player(Player *p, Map* map) {
             get_map_char(map,y+1,x) == '#' &&
             get_map_char(map,y+1,x+1) == '#');
 
-    p->playerX = y;
-    p->playerY = x;
+    p->playerY = y;
+    p->playerX = x;
 }
 
 void draw_player(Player* p, Map* m){
     if (p->hp > 2) {
-        insert_on_map(m,'@',p->playerX, p->playerY);
+        insert_on_map(m,'@',p->playerY, p->playerX);
         attron(COLOR_PAIR(PLAYER));
         mvaddch(p->playerY, p->playerX, '@' | A_BOLD);
         attroff(COLOR_PAIR(PLAYER));
     } else if (p->hp == 2) {
-        insert_on_map(m,'@',p->playerX, p->playerY);
+        insert_on_map(m,'@',p->playerY, p->playerX);
         attron(COLOR_PAIR(MEDIUM_HP));
         mvaddch(p->playerY, p->playerX, '@' | A_BOLD);
         attroff(COLOR_PAIR(MEDIUM_HP));
     } else if (p->hp == 1){
-        insert_on_map(m,'@',p->playerX, p->playerY);
+        insert_on_map(m,'@',p->playerY, p->playerX);
         attron(COLOR_PAIR(LOW_HP));
         mvaddch(p->playerY, p->playerX, '@' | A_BOLD);
         attroff(COLOR_PAIR(LOW_HP));
