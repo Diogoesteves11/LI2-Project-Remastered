@@ -119,6 +119,17 @@ void draw_player(Player* p, Map* m){
     }
 }
 
+void move_player(Player* p,Map* m ,int y_offset, int x_offset){
+    if(get_map_char(m,p->playerY + y_offset, p->playerX + x_offset) != '#' &&
+        get_map_char(m,p->playerY + y_offset, p->playerX + x_offset) != '&'){
+
+        clear_map_pos(m,p->playerY,p->playerX);
+        p->playerY += y_offset;
+        p->playerX += x_offset;
+        insert_on_map(m,'@',p->playerY,p->playerX);
+    }
+}
+
 void deletePlayer(Player* p){
     free(p);
 }

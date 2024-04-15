@@ -7,7 +7,7 @@
 #include "../include/player.h"
 #include "../include/colors.h"
 
-void draw_light(Map* m, Player* p){
+void draw_light(Map* m, Player* p, int map_visibility){
     int centerX = getPlayerX(p);
     int centerY = getPlayerY(p);
 
@@ -21,6 +21,22 @@ void draw_light(Map* m, Player* p){
     char explosion = '^';
 
     double delta = 0.05;
+
+    if(map_visibility){
+        init_pair(WALL_COLOR, COLOR_CYAN, COLOR_BLUE);
+    }else {
+        init_pair(WALL_COLOR, COLOR_BLACK, COLOR_BLACK);
+    }
+
+    for(int y = 0; y < (get_map_Max_Y(m)); y++){
+        for(int x = 0; x < (get_map_Max_X(m)); x++){
+            if(get_map_char(m,y,x) == wall) {
+                attron(COLOR_PAIR(WALL_COLOR));
+                mvaddch(y, x, wall);
+                attroff(COLOR_PAIR(WALL_COLOR));
+            }
+        }
+    }
 
     for (double angle = 0; angle < 2 * M_PI; angle += delta){
         double dx = sin(angle);
@@ -40,7 +56,5 @@ void draw_light(Map* m, Player* p){
             x+=dx;
             y+=dy;
         }
-
-
     }
 }

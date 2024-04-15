@@ -38,6 +38,8 @@ int getPlayerDirection(Player* p);
 Player* start_player();
 void spawn_player(Player *p, Map* map);
 void draw_player(Player* p, Map* m);
+void move_player(Player* p,Map* m ,int y_offset, int x_offset);
+
 void deletePlayer(Player* p);
 
 #endif

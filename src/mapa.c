@@ -29,6 +29,10 @@ void insert_on_map(Map* m, char input, int y, int x){
     m->matrix[y][x] = input;
 }
 
+void clear_map_pos(Map* m, int y, int x){
+    m->matrix[y][x] = ' ';
+}
+
 Map* start_map(int max_y, int max_x){
     Map* m = malloc(sizeof(Map));
     m->Max_X = max_x;
@@ -57,19 +61,11 @@ void generate_borders(Map* map, int* count1){
     }
 }
 
-void generate_map(Map* map,int map_visibility, int max_x, int max_y){
+void generate_map(Map* map, int max_x, int max_y){
     srand(time(NULL));
 
-    if(map_visibility){
-         init_pair(WALL_COLOR, COLOR_CYAN, COLOR_BLUE);
-    }else {
-        init_pair(WALL_COLOR, COLOR_BLACK, COLOR_BLACK);
-    }
-
-
     int count1 = 0;
-    
-    attron(COLOR_PAIR(WALL_COLOR));
+
     generate_borders(map,&count1);
 
     int casas_totais = ((map->Max_X-1) * (map->Max_Y-1)) - count1;
@@ -78,7 +74,6 @@ void generate_map(Map* map,int map_visibility, int max_x, int max_y){
         int x1 =  rand() % (map->Max_X - 1);
         int y1 =  rand() % (map->Max_Y - 1);
         map->matrix[y1][x1] = '#';
-        mvaddch(y1, x1, map->matrix[y1][x1]);
     }
 
     for (int i = 0; i < 3; i++) { 
@@ -94,17 +89,11 @@ void generate_map(Map* map,int map_visibility, int max_x, int max_y){
                 }
                 if (map->matrix[y][x] == '#') {
                     if (count < 3) {
-                         attroff(COLOR_PAIR(WALL_COLOR));
-                         attron (COLOR_PAIR(BLACK));
                          map->matrix[y][x] = ' ';
-                         mvaddch(y,x,map->matrix[y][x]);
-                         attroff(COLOR_PAIR(BLACK));
-                         attron (COLOR_PAIR(BLACK));
                     }
                 } else {
                     if (count > 4) {
                         map->matrix[y][x] = '#';
-                        mvaddch(y,x,map->matrix[y][x]);
                     }
                 }
             }
@@ -124,18 +113,12 @@ void generate_map(Map* map,int map_visibility, int max_x, int max_y){
                 }
                 if (map->matrix[y][x] == '#') {
                     if (count < 3) {
-                         attroff(COLOR_PAIR(WALL_COLOR));
-                         attron (COLOR_PAIR(BLACK));
                          map->matrix[y][x] = ' ';
-                         mvaddch(y,x,map->matrix[y][x]);
-                         attroff(COLOR_PAIR(BLACK));
-                         attron (COLOR_PAIR(BLACK));
                     }
                 }
                 if (map->matrix[y][x]== ' ') {
                     if (count > 4) {
                         map->matrix[y][x] = '#';
-                        mvaddch(y,x,map->matrix[y][x]);
                     }
                 }
             }
@@ -153,17 +136,12 @@ void generate_map(Map* map,int map_visibility, int max_x, int max_y){
             if (map->matrix[i][j + 1] == '#') count2++;
 
             if (count2 == 0) {
-                attroff(COLOR_PAIR(WALL_COLOR));
-                attron (COLOR_PAIR(BLACK));
                 map->matrix[i][j] = ' '; 
                 mvaddch(i, j, map->matrix[i][j]);
-                attroff(COLOR_PAIR(BLACK));
-                attron(COLOR_PAIR(WALL_COLOR));
             }
         }
     }
 }
-attroff(COLOR_PAIR(WALL_COLOR));
 }
 
 void deleteMap(struct map_matrix *map) {
