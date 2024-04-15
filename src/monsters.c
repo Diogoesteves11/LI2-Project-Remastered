@@ -42,8 +42,12 @@ Monster** create_monsters(int num){
    return malloc(sizeof(Monster) * num);
 }
 
-void deleteMonsters(Monster** m, int n){
-    for(int i = 0; i < n; i++) free(m[i]);
-    free(m);
+void deleteMonsters(Monster** monsters, int num_enemies) {
+    if (monsters != NULL) {
+        for (int i = 0; i < num_enemies; i++) {
+            free(monsters[i]);
+        }
+        free(monsters);
+    }
 }
 

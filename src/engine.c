@@ -16,8 +16,8 @@ void run_game(int* in_game, int num_enemies, int map_visibility, int jump_status
 
     Monster** monster_array = create_monsters(num_enemies);
     Player* player = start_player();
-
     Map* map = start_map(y,x);
+
     generate_map(map, map_visibility, y , x);
     spawn_player(player,map);
     while((*in_game)){
@@ -29,6 +29,6 @@ void run_game(int* in_game, int num_enemies, int map_visibility, int jump_status
         if(input == 'q') (*in_game) = 0;
     }
     deletePlayer(player);
-    deleteMonsters(monster_array, num_enemies);
+    deleteMonsters(monster_array,num_enemies);
     deleteMap(map);
 }
