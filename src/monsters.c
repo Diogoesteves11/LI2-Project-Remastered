@@ -44,5 +44,6 @@ Monster** create_monsters(int num){
 
 void deleteMonsters(Monster** m, int n){
     for(int i = 0; i < n; i++) free(m[i]);
+    free(m);
 }
 
