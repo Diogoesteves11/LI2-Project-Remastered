@@ -21,6 +21,8 @@ void run_game(int* in_game, int num_enemies, int map_visibility, int jump_status
 
     generate_map(map, y , x);
     spawn_player(player,map);
+    spawn_monsters(monster_array,map,num_enemies);
+
     while((*in_game)){
         clear();
         draw_player(player,map);
