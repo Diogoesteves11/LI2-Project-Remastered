@@ -1,4 +1,5 @@
 #include "../include/monsters.h"
+#include "../include/mapa.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -9,8 +10,6 @@ struct monster{
 };
 
 //setters
-
-
 
 void setMonsterX(Monster *m, int x){
     m->MonsterX = x;
@@ -41,6 +40,11 @@ double getMonsterHp(Monster *m){
 Monster** create_monsters(int num){
    return malloc(sizeof(Monster) * num);
 }
+
+void spawn_monsters(Map* m, int num_enemies){
+    
+}
+
 
 void deleteMonsters(Monster** monsters, int num_enemies) {
     if (monsters != NULL) {
