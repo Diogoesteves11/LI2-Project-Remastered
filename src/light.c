@@ -27,6 +27,7 @@ void draw_light(Map* m, Player* p, int map_visibility){
     }else {
         init_pair(WALL_COLOR, COLOR_BLACK, COLOR_BLACK);
     }
+    init_pair(RED,COLOR_RED,COLOR_BLACK);
 
     for(int y = 0; y < (get_map_Max_Y(m)); y++){
         for(int x = 0; x < (get_map_Max_X(m)); x++){
@@ -52,6 +53,10 @@ void draw_light(Map* m, Player* p, int map_visibility){
                 mvaddch(y, x, testch);
                 attroff(COLOR_PAIR(WHITE));
                 break;
+            } else if(testch == enemy){
+                attron(COLOR_PAIR(RED));
+                mvaddch(y,x,enemy);
+                attroff(COLOR_PAIR(RED));
             }
             x+=dx;
             y+=dy;

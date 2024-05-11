@@ -4,12 +4,17 @@
 #include <stdio.h>
 
 struct monster{
+    int id;
     int MonsterX;
     int MonsterY;
     double hp;
 };
 
 //setters
+
+void setMonsterID(Monster* m, int id){
+    m->id = id;
+}
 
 void setMonsterX(Monster *m, int x){
     m->MonsterX = x;
@@ -25,6 +30,10 @@ void setMonsterHp(Monster *m, double hp){
 
 //getters
 
+int getMonsterID(Monster* m){
+    return m->id;
+}
+
 int getMonsterX(Monster *m){
     return m->MonsterX;
 }
@@ -38,11 +47,26 @@ double getMonsterHp(Monster *m){
 }
 
 Monster** create_monsters(int num){
-   return malloc(sizeof(Monster) * num);
+   Monster** m =  malloc(sizeof(Monster) * num);
+   for(int i = 1; i <= num; i++){
+       m[i]->id = i;
+   }
+   return m;
 }
 
-void spawn_monsters(Map* m, int num_enemies){
+void spawn_monsters(Monster** monster, Map* m, int num_enemies){
+    int ix,iy;
+    for (int i = 0; i < num_enemies; i++){
+        do{
+            ix = 1 + (rand() % get_map_Max_X(m)- 2);
+            iy = 1 + (rand() % get_map_Max_Y(m) - 2);
+        }while(get_map_char(m,iy,ix) != ' ');
+        insert_on_map(m,'&',iy,ix);
 
+        monster[i]->MonsterY = iy;
+        monster[i]->MonsterX = ix;
+        monster[i]->hp = 2.0;
+    }
 }
 
 
