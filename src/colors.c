@@ -8,7 +8,7 @@ void init_colors(){
     init_pair(YELLOW, COLOR_YELLOW, COLOR_BLACK);
     init_pair(BLACK, COLOR_BLACK, COLOR_BLACK);
 
-    init_pair(PLAYER, COLOR_BLACK, COLOR_GREEN);
+    init_pair(PLAYER, COLOR_GREEN, COLOR_BLACK);
     init_pair(MEDIUM_HP, COLOR_BLACK, COLOR_YELLOW);
     init_pair(LOW_HP,COLOR_BLACK,COLOR_RED);
 

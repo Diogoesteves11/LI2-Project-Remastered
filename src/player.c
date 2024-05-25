@@ -130,6 +130,6 @@ void move_player(Player* p,Map* m ,int y_offset, int x_offset){
     }
 }
 
-void deletePlayer(Player* p){
-    free(p);
+void deletePlayer(Player* player){
+    free(player);
 }
