@@ -1,7 +1,7 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include "../include/mapa.h"
+#include "../include/map.h"
 
 typedef struct player Player;
 

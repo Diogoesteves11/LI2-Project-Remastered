@@ -2,7 +2,7 @@
 #define UPDATE_H
 
 #include "../include/player.h"
-#include "../include/mapa.h"
+#include "../include/map.h"
 
 void update_player(Player* p,Map* m,char input);
 

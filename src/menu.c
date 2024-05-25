@@ -1,7 +1,7 @@
 #include "../include/menu.h"
 #include "../include/colors.h"
 #include "../include/player.h"
-#include "../include/mapa.h"
+#include "../include/map.h"
 #include "../include/monsters.h"
 #include <stdio.h>
 #include <stdlib.h>

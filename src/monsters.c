@@ -1,5 +1,5 @@
 #include "../include/monsters.h"
-#include "../include/mapa.h"
+#include "../include/map.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -45,13 +45,24 @@ int getMonsterY(Monster *m){
 double getMonsterHp(Monster *m){
     return m->hp;
 }
+Monster** create_monsters(int num) {
+    Monster** m = malloc(sizeof(Monster*) * num);
+    if (m == NULL) {
+        return NULL;
+    }
 
-Monster** create_monsters(int num){
-   Monster** m =  malloc(sizeof(Monster) * num);
-   for(int i = 1; i <= num; i++){
-       m[i]->id = i;
-   }
-   return m;
+    for (int i = 0; i < num; i++) {
+        m[i] = malloc(sizeof(Monster));
+        if (m[i] == NULL) {
+            for (int j = 0; j < i; j++) {
+                free(m[j]);
+            }
+            free(m);
+            return NULL;
+        }
+        m[i]->id = i;
+    }
+    return m;
 }
 
 void spawn_monsters(Monster** monster, Map* m, int num_enemies){
@@ -70,12 +81,10 @@ void spawn_monsters(Monster** monster, Map* m, int num_enemies){
 }
 
 
-void deleteMonsters(Monster** monsters, int num_enemies) {
-    if (monsters != NULL) {
-        for (int i = 0; i < num_enemies; i++) {
-            free(monsters[i]);
-        }
-        free(monsters);
+void free_monsters(Monster** m, int num) {
+    for (int i = 0; i < num; i++) {
+        free(m[i]); // Liberar cada Monster individualmente
     }
+    free(m); // Liberar o array de ponteiros
 }
 

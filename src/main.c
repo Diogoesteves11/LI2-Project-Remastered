@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <ncurses.h>
-#include "../include/mapa.h"
+#include "../include/map.h"
 #include "../include/player.h"
 #include "../include/monsters.h"
 #include "../include/menu.h"
@@ -22,7 +22,7 @@ int main(int argc, char** argv){
         int jump_status = 0;
         int in_settings = 0, in_commands = 0, in_game_dynamics = 0, in_game = 0;
         int num_enemies = 5;
-
+        
         int y, x;
 
         while(1){

@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <ncurses.h>
 #include <math.h>
-#include "../include/mapa.h"
+#include "../include/map.h"
 #include "../include/player.h"
 #include "../include/colors.h"
 

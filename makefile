@@ -1,5 +1,5 @@
 CC = gcc #compiler
-CFLAGS = -Iinclude -Wall -Wextra -pedantic -O2 -Werror=discarded-qualifiers -g# compilation flags
+CFLAGS = -Iinclude -Wall -pedantic -O2 -Werror=discarded-qualifiers -g# compilation flags
 LIBS = -lm -lcurses#linking math library
 
 SRC_DIR := src

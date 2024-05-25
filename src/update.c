@@ -1,7 +1,7 @@
 #include "../include/update.h"
 #include "../include/monsters.h"
 #include "../include/player.h"
-#include "../include/mapa.h"
+#include "../include/map.h"
 
 #include <stdlib.h>
 #include <stdio.h>

@@ -1,5 +1,5 @@
 #include "../include/player.h"
-#include "../include/mapa.h"
+#include "../include/map.h"
 #include "../include/colors.h"
 #include <stdio.h>
 #include <stdlib.h>

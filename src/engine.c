@@ -1,5 +1,5 @@
 #include "../include/engine.h"
-#include "../include/mapa.h"
+#include "../include/map.h"
 #include "../include/colors.h"
 #include "../include/monsters.h"
 #include "../include/player.h"
@@ -34,6 +34,6 @@ void run_game(int* in_game, int num_enemies, int map_visibility, int jump_status
         update_player(player,map,input);
     }
     deletePlayer(player);
-    deleteMonsters(monster_array,num_enemies);
+    free_monsters(monster_array,num_enemies);
     deleteMap(map);
 }

@@ -144,13 +144,10 @@ void generate_map(Map* map, int max_x, int max_y){
 }
 }
 
-void deleteMap(struct map_matrix *map) {
-    if (map != NULL) {
-        for (int i = 0; i < map->Max_Y; i++) {
-            free(map->matrix[i]);
-        }
-        free(map->matrix);
-        free(map);
+void deleteMap(Map* map) {
+    for(int i = 0; i < map->Max_Y; i++){
+        free(map->matrix[i]);
     }
+    free(map->matrix);
+    free(map);
 }
-

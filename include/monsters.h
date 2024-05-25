@@ -1,7 +1,7 @@
 #ifndef MONSTERS_H
 #define MONSTERS_H
 
-#include "../include/mapa.h"
+#include "../include/map.h"
 
 typedef struct monster Monster;
 
@@ -17,6 +17,6 @@ double getMonsterHp(Monster *m);
 
 Monster** create_monsters(int num);
 void spawn_monsters(Monster** monster, Map* m, int num_enemies);
-void deleteMonsters(Monster** m, int num_enemies);
+void free_monsters(Monster** m, int num);
 
 #endif
