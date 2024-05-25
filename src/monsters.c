@@ -83,8 +83,8 @@ void spawn_monsters(Monster** monster, Map* m, int num_enemies){
 
 void free_monsters(Monster** m, int num) {
     for (int i = 0; i < num; i++) {
-        free(m[i]); // Liberar cada Monster individualmente
+        free(m[i]);
     }
-    free(m); // Liberar o array de ponteiros
+    free(m);
 }
 
